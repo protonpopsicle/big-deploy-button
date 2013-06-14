@@ -7,12 +7,13 @@ function nextFrame() {
 }
 
 $(function() {
-    $('.button.active').click(function() {
+    $('.button').not('.disabled').click(function() {
+        console.log("hey");
         $('#output').hide();
-        $('.button').removeClass('active');
+        $('.button').addClass('disabled');
 
         var myTimer = setInterval(function() {
-            $('.button').html(nextFrame());
+            $('.spinner').html(nextFrame());
         }, 100);
         
         $.ajax({
@@ -20,7 +21,7 @@ $(function() {
             url: '/deploy',
         }).done(function(msg) { 
             clearInterval(myTimer);
-            $('.button').addClass('active').html('Deploy');
+            $('.button').removeClass('disabled').html('Deploy');
             $('#output').show().html(msg);
         });
         return false;

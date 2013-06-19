@@ -7,23 +7,23 @@ function nextFrame() {
 }
 
 $(function() {
-    $('.button').not('.disabled').click(function() {
-        console.log("hey");
-        $('#output').hide();
-        $('.button').addClass('disabled');
+    $('.button').click(function() {
+        var $button = $(this);
+        if (!$button.hasClass('disabled')) {
+            console.log('someshit');
+            $('#output').hide();
+            $('#loading').show();
+            $button.addClass('disabled');
 
-        var myTimer = setInterval(function() {
-            $('.spinner').html(nextFrame());
-        }, 100);
-        
-        $.ajax({
-            type: 'GET',
-            url: '/deploy',
-        }).done(function(msg) { 
-            clearInterval(myTimer);
-            $('.button').removeClass('disabled').html('Deploy');
-            $('#output').show().html(msg);
-        });
+	    $.ajax({
+                type: 'GET',
+                url: '/deploy',
+            }).done(function(msg) { 
+                $button.removeClass('disabled');
+                $('#loading').hide();
+                $('#output').show().html(msg);
+            });
+        }
         return false;
     });
 });

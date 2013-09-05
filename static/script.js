@@ -1,11 +1,3 @@
-var frames = ['|', '/', '-', '\\'];
-var frameIndex = 0;
-
-function nextFrame() {
-    frameIndex = frameIndex == frames.length - 1 ? 0 : frameIndex + 1;
-    return frames[frameIndex];
-}
-
 $(function() {
     $('.button').click(function() {
         var $button = $(this);

@@ -2,7 +2,6 @@ $(function() {
     $('.button').click(function() {
         var $button = $(this);
         if (!$button.hasClass('disabled')) {
-            console.log('someshit');
             $('#output').hide();
             $('#loading').show();
             $button.addClass('disabled');
